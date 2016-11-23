@@ -1,11 +1,16 @@
 package com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2;
 
+import android.annotation.SuppressLint;
 import android.content.res.TypedArray;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +72,31 @@ public class TabsFragment extends Fragment {
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
 
+        /**
+         *
+         * Administra los colores del drawer, toolbar y tabs
+         *
+         * */
+
+        @SuppressLint("Recycle")
+        TypedArray arrayColorToolbar = getResources().obtainTypedArray(R.array.colorToolbar);
+
+
+        int color = arrayColorToolbar.getResourceId(id, 0);
+        int cambiarColor = ContextCompat.getColor(activity.getBaseContext(), color);
+
+        Drawable toolbarColor = new ColorDrawable(cambiarColor);
+
+        if (activity.getSupportActionBar() != null) {
+            activity.getSupportActionBar().setBackgroundDrawable(toolbarColor);
+        }
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            activity.getWindow().setStatusBarColor(cambiarColor);
+        }
+
+        /** Incerta el icono en el tab */
+
         for (int i = 0; i < imgTabs.length(); i++) {
 
             TabLayout.Tab tab = tabLayout.getTabAt(i);
@@ -105,6 +135,9 @@ public class TabsFragment extends Fragment {
                 check = R.id.nav_tweeter;
                 break;
         }
+
+        /** Actualiza el titulo*/
+
         activity.updateView(title, subTitle);
         activity.navigationView.setCheckedItem(check);
     }
