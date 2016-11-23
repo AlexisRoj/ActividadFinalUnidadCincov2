@@ -2,8 +2,6 @@ package com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2;
 
 import android.annotation.SuppressLint;
 import android.content.res.TypedArray;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,12 +64,13 @@ public class TabsFragment extends Fragment {
         }
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
+
+        /** Adjunta el adapter*/
         viewPager.setAdapter(new BookViewPagerAdapter(getActivity().getSupportFragmentManager()));
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-
 
         /**
          *
@@ -85,18 +85,18 @@ public class TabsFragment extends Fragment {
         int color = arrayColorToolbar.getResourceId(id, 0);
         int cambiarColor = ContextCompat.getColor(activity.getBaseContext(), color);
 
-        Drawable toolbarColor = new ColorDrawable(cambiarColor);
+        Toolbar toolbar = (Toolbar)view.findViewById(R.id.toolbar);
 
-        if (activity.getSupportActionBar() != null) {
-            activity.getSupportActionBar().setBackgroundDrawable(toolbarColor);
-        }
 
         if (Build.VERSION.SDK_INT >= 21) {
+            /** Cambia colores apartir de la version 21*/
+            toolbar.setBackgroundColor(cambiarColor);
+            tabLayout.setBackgroundColor(cambiarColor);
             activity.getWindow().setStatusBarColor(cambiarColor);
+
         }
 
         /** Incerta el icono en el tab */
-
         for (int i = 0; i < imgTabs.length(); i++) {
 
             TabLayout.Tab tab = tabLayout.getTabAt(i);
@@ -136,8 +136,7 @@ public class TabsFragment extends Fragment {
                 break;
         }
 
-        /** Actualiza el titulo*/
-
+        /** Actualiza el titulo y marca el item selecionado del drawer*/
         activity.updateView(title, subTitle);
         activity.navigationView.setCheckedItem(check);
     }
