@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2.BaseFragment;
 
 /**
+ * Adaptador encargado de rellenar los tabs.
  * Created by Alexis on 22/11/2016.
  */
 
@@ -17,13 +18,10 @@ public class BaseViewPagerAdapter extends FragmentStatePagerAdapter {
     public BaseViewPagerAdapter(FragmentManager fm, String[] tabs) {
         super(fm);
         this.tabs = tabs;
-
     }
 
     @Override
     public Fragment getItem(int position) {
-
-
         return BaseFragment.getInstance(tabs[position]);
     }
 

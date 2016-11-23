@@ -1,5 +1,6 @@
 package com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -19,7 +20,8 @@ import com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2.adapte
 
 public class TabsFragment extends Fragment {
 
-    private String [] tabs;
+    private String[] tabs;
+    private TypedArray imgTabs;
     int id;
 
     @Nullable
@@ -33,23 +35,27 @@ public class TabsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MainActivity activity = (MainActivity)getActivity();
+        MainActivity activity = (MainActivity) getActivity();
         id = activity.getPositionArray();
 
-        switch (id){
+        switch (id) {
 
-            /** Seleciona la lista a desplegar*/
+            /** Seleciona la lista a desplegar de iconos e imagenes*/
             case 1:
                 tabs = getContext().getResources().getStringArray(R.array.facebookTabs);
+                imgTabs = getContext().getResources().obtainTypedArray(R.array.facebookImg);
                 break;
             case 2:
                 tabs = getContext().getResources().getStringArray(R.array.instagramTabs);
+                imgTabs = getContext().getResources().obtainTypedArray(R.array.twiterImg);
                 break;
             case 3:
                 tabs = getContext().getResources().getStringArray(R.array.plusTabs);
+                imgTabs = getContext().getResources().obtainTypedArray(R.array.plusImg);
                 break;
             case 4:
                 tabs = getContext().getResources().getStringArray(R.array.twiterTabs);
+                imgTabs = getContext().getResources().obtainTypedArray(R.array.twiterImg);
                 break;
         }
 
@@ -59,21 +65,49 @@ public class TabsFragment extends Fragment {
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
+
+        for (int i = 0; i < imgTabs.length(); i++) {
+
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            if (tab != null){
+                tab.setIcon(imgTabs.getResourceId(i,0));
+            }
+        }
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        String title = getString(R.string.app_name);
+        String subTitle = null;
+        int check = 0;
+        /** Selector de titulos de toolbar*/
+
         MainActivity activity = (MainActivity) getActivity();
 
-        String data = getString(R.string.facebook);
-        activity.updateView(data,data);
-
-
-        activity.navigationView.setCheckedItem(R.id.nav_facebook);
+        switch (id){
+            case 1:
+                subTitle = getString(R.string.facebook);
+                check = R.id.nav_facebook;
+                break;
+            case 2:
+                subTitle = getString(R.string.instragram);
+                check = R.id.nav_instagram;
+                break;
+            case 3:
+                subTitle = getString(R.string.google_plus);
+                check = R.id.nav_plus;
+                break;
+            case 4:
+                subTitle = getString(R.string.tweeter);
+                check = R.id.nav_tweeter;
+                break;
+        }
+        activity.updateView(title, subTitle);
+        activity.navigationView.setCheckedItem(check);
     }
-
 
     private class BookViewPagerAdapter extends BaseViewPagerAdapter {
 
