@@ -1,5 +1,9 @@
 package com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.res.TypedArray;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity
@@ -22,6 +27,7 @@ public class MainActivity extends AppCompatActivity
     NavigationView navigationView;
 
     int positionArray;
+    private String[] etiquetaSubMenu;
 
     public int getPositionArray() {
         return positionArray;
@@ -93,6 +99,29 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        /** Traen las etiquetas e imagenes del subMenu*/
+        etiquetaSubMenu = getResources().getStringArray(R.array.nombreMenu);
+        @SuppressLint("Recycle")
+        TypedArray imgSubMenu = getResources().obtainTypedArray(R.array.nombreImgMenu);
+        String[] uriIntent = getResources().getStringArray(R.array.uriMenu);
+
+        Intent intent;
+
+        SubMenu versionWeb = menu.addSubMenu(R.string.version_web);
+
+
+        for (int i = 0; i < etiquetaSubMenu.length - 1; i++) {
+            /** Agrega submenu, se envia uri a traves de un arreglo
+             * Se le suma uno a i para reutilizar arreglo de etiquetas*/
+
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uriIntent[i + 1]));
+
+            versionWeb.add(0, i + 1, i + 1, etiquetaSubMenu[i + 1])
+                    .setIcon(imgSubMenu.getResourceId(i + 1, 0))
+                    .setIntent(intent);
+        }
+
         return true;
     }
 
@@ -116,7 +145,7 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        Fragment fragment = null;
+        Fragment fragment;
 
         switch (id) {
             /** Selector de fragmentos del Drawer*/
@@ -142,15 +171,13 @@ public class MainActivity extends AppCompatActivity
         else
             fragment = new TabsFragment();
 
-        if (fragment != null)
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, fragment)
-                    .commit();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, fragment)
+                .commit();
 
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
     }
-
 
 }

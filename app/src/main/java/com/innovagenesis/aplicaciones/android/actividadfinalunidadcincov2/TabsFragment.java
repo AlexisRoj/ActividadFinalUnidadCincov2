@@ -68,9 +68,12 @@ public class TabsFragment extends Fragment {
         /** Adjunta el adapter*/
         viewPager.setAdapter(new BookViewPagerAdapter(getActivity().getSupportFragmentManager()));
 
+
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        //tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE); // para cuando es mas de 3 tabs
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+
 
         /**
          *
@@ -80,7 +83,6 @@ public class TabsFragment extends Fragment {
 
         @SuppressLint("Recycle")
         TypedArray arrayColorToolbar = getResources().obtainTypedArray(R.array.colorToolbar);
-
 
         int color = arrayColorToolbar.getResourceId(id, 0);
         int cambiarColor = ContextCompat.getColor(activity.getBaseContext(), color);
@@ -94,14 +96,17 @@ public class TabsFragment extends Fragment {
             tabLayout.setBackgroundColor(cambiarColor);
             activity.getWindow().setStatusBarColor(cambiarColor);
 
+
         }
 
         /** Incerta el icono en el tab */
         for (int i = 0; i < imgTabs.length(); i++) {
 
             TabLayout.Tab tab = tabLayout.getTabAt(i);
+
             if (tab != null){
                 tab.setIcon(imgTabs.getResourceId(i,0));
+                //tab.setText(null);
             }
         }
     }
