@@ -18,6 +18,9 @@ public class BaseFragment extends Fragment {
     private String name;
     private static final String ARG_NAME = "name";
 
+    private int posicion;
+    private static final String ARG_DRAWABLE = "name";
+
 
     public String getName() {
         return name;
@@ -41,11 +44,12 @@ public class BaseFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_base, container, false);
     }
 
-    public static Fragment getInstance(String name) {
+    public static Fragment getInstance(String name, int imagen, int posicion, int idArreglo) {
         BaseFragment fragment = new BaseFragment();
 
         Bundle args = new Bundle();
         args.putString(ARG_NAME, name);
+        args.putInt(ARG_DRAWABLE, posicion);
 
         fragment.setArguments(args);
 

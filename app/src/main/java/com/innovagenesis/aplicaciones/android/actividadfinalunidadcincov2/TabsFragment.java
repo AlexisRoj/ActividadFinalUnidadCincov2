@@ -136,7 +136,7 @@ public class TabsFragment extends Fragment {
                 check = R.id.nav_plus;
                 break;
             case 4:
-                subTitle = getString(R.string.tweeter);
+                subTitle = getString(R.string.twitter);
                 check = R.id.nav_tweeter;
                 break;
         }
@@ -149,7 +149,7 @@ public class TabsFragment extends Fragment {
     private class BookViewPagerAdapter extends BaseViewPagerAdapter {
 
         public BookViewPagerAdapter(FragmentManager manager) {
-            super(manager, tabs);
+            super(manager, tabs,id);
         }
 
 

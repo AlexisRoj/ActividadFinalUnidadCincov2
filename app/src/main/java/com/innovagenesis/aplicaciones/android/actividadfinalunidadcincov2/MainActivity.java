@@ -2,6 +2,7 @@ package com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+    FloatingActionButton fab;
 
     int positionArray;
     private String[] etiquetaSubMenu;
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity
 
         /** Boton Flotante esta funcionando */
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,7 +140,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.compartir) {
+            return true;
+        }else if (id == R.id.settings) {
             return true;
         }
 
@@ -170,13 +175,10 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
 
-
         if (positionArray < 1)
             fragment = new MainFragment();
         else
             fragment = new TabsFragment();
-
-
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment)
@@ -191,6 +193,15 @@ public class MainActivity extends AppCompatActivity
         hView = navigationView.getHeaderView(0);
         LinearLayout head = (LinearLayout) hView.findViewById(R.id.header);
         head.setBackgroundColor(cambiarColor);
+
+        /** Cambia la imagen del drawer*/
+        TypedArray imgDrawer = getResources().obtainTypedArray(R.array.nombreImgMenu2);
+        ImageView imgSocial = (ImageView)findViewById(R.id.imgSocial);
+
+        imgSocial.setImageResource(imgDrawer.getResourceId(positionArray + 0, 0));
+
+        /** Cambia color boton flotante*/
+        fab.setBackgroundTintList(ColorStateList.valueOf(cambiarColor));
 
         drawerLayout.closeDrawer(GravityCompat.START);
 

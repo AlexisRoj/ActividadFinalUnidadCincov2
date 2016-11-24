@@ -15,15 +15,17 @@ import com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2.BaseFr
 public class BaseViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private String[] tabs;
+    private int id;
 
-    public BaseViewPagerAdapter(FragmentManager fm, String[] tabs) {
+    public BaseViewPagerAdapter(FragmentManager fm, String[] tabs, int id) {
         super(fm);
         this.tabs = tabs;
+        this.id = id;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return BaseFragment.getInstance(tabs[position]);
+        return BaseFragment.getInstance(tabs[position],position,id);
     }
 
     @Override

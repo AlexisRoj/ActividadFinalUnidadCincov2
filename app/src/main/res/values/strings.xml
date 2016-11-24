@@ -9,7 +9,7 @@
     <string name="facebook">facebook</string>
     <string name="instragram">Instagram</string>
     <string name="google_plus">Google Plus</string>
-    <string name="tweeter">Tweeter</string>
+    <string name="twitter">Twitter</string>
     <string name="version_web">Versión Web</string>
     <string name="share">Compartir</string>
     <string name="configuracion">Confirguración</string>
@@ -29,5 +29,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="owner">Ing. Alexis Rojas Hidalgo</string>
+    <string name="email">arojash@innovagenesis.com</string>
+    <string name="compartir">Compartir</string>
 
 </resources>
