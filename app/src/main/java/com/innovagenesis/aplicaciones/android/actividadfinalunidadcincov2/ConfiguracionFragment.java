@@ -1,6 +1,7 @@
 package com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2;
 
 
+import android.annotation.SuppressLint;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
@@ -44,6 +45,7 @@ public class ConfiguracionFragment extends Fragment {
         ((ImageView)view.findViewById(R.id.image_storage)).setImageResource(R.drawable.ic_settings);
         ((TextView)view.findViewById(R.id.textContent)).setText(R.string.action_settings);
 
+        @SuppressLint("Recycle")
         TypedArray arrayColorToolbar = getResources().obtainTypedArray(R.array.colorToolbar);
 
         int color = arrayColorToolbar.getResourceId(0, 0);

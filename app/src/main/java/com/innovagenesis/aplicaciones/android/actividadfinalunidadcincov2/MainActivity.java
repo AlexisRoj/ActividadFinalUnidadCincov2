@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -23,9 +22,6 @@ import android.view.SubMenu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-
-import com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2.dialogo.Dialogo;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -37,15 +33,10 @@ public class MainActivity extends AppCompatActivity
     FloatingActionButton fab;
 
 
-    int positionArray;
-    private String[] etiquetaSubMenu;
+    private int positionArray;
 
     public int getPositionArray() {
         return positionArray;
-    }
-
-    public void setPositionArray(int positionArray) {
-        this.positionArray = positionArray;
     }
 
     @Override
@@ -75,8 +66,16 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                String email = "arojash@innovagenesis.com";
+                String subject = "Sugerencias";
+                String body = "";
+
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + email));
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+                emailIntent.putExtra(Intent.EXTRA_TEXT, body);
+
+                startActivity(Intent.createChooser(emailIntent, "Chooser Title"));
             }
         });
     }
@@ -114,7 +113,7 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         /** Traen las etiquetas e imagenes del subMenu*/
-        etiquetaSubMenu = getResources().getStringArray(R.array.nombreMenu);
+        String[] etiquetaSubMenu = getResources().getStringArray(R.array.nombreMenu);
         @SuppressLint("Recycle")
         TypedArray imgSubMenu = getResources().obtainTypedArray(R.array.nombreImgMenu);
         String[] uriIntent = getResources().getStringArray(R.array.uriMenu);
@@ -148,25 +147,26 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.compartir) {
             return true;
-        }else if (id == R.id.settings) {
+        } else if (id == R.id.settings) {
 
             Fragment fragment = new ConfiguracionFragment();
 
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container,fragment)
+                    .replace(R.id.container, fragment)
                     .commit();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressWarnings("ResourceType")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
         Fragment fragment;
 
-                switch (id) {
+        switch (id) {
             /** Selector de fragmentos del Drawer*/
             case R.id.nav_home:
                 positionArray = 0;
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity
         /**Cambia el color del Drawer*/
         @SuppressLint("Recycle")
         TypedArray arrayColorToolbar = getResources().obtainTypedArray(R.array.colorToolbar);
-        int color = arrayColorToolbar.getResourceId(positionArray + 0, 0);
+        int color = arrayColorToolbar.getResourceId(positionArray, 0);
         int cambiarColor = ContextCompat.getColor(getBaseContext(), color);
 
         hView = navigationView.getHeaderView(0);
@@ -205,10 +205,11 @@ public class MainActivity extends AppCompatActivity
         head.setBackgroundColor(cambiarColor);
 
         /** Cambia la imagen del drawer*/
+        @SuppressLint("Recycle")
         TypedArray imgDrawer = getResources().obtainTypedArray(R.array.nombreImgMenu2);
-        ImageView imgSocial = (ImageView)findViewById(R.id.imgSocial);
+        ImageView imgSocial = (ImageView) findViewById(R.id.imgSocial);
 
-        imgSocial.setImageResource(imgDrawer.getResourceId(positionArray + 0, 0));
+        imgSocial.setImageResource(imgDrawer.getResourceId(positionArray, 0));
 
         /** Cambia color boton flotante*/
         fab.setBackgroundTintList(ColorStateList.valueOf(cambiarColor));
@@ -216,13 +217,5 @@ public class MainActivity extends AppCompatActivity
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
-    }
-
-    /** Dialogos*/
-
-    public void onClickCheck(View view){
-        Dialogo.listaCheck(this, view).show();
-        Toast.makeText(this,"Esto es una prueba",Toast.LENGTH_SHORT).show();
-
     }
 }

@@ -2,7 +2,6 @@ package com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2.dialo
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 
@@ -21,24 +20,20 @@ public class Dialogo {
         //final boolean[] checkedItem = {false, false, false, true};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.TemaDialogoRadioCheck);
+        builder.setTitle("Seleccione las redes a compartir");
 
-       /* builder.setMultiChoiceItems(items, checkedItem, new DialogInterface.OnMultiChoiceClickListener() {
+       builder.setMultiChoiceItems(items, checkedItem, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                if (isChecked) Snackbar.make(view, items[which], Snackbar.LENGTH_SHORT).show();
+               // if (isChecked) Snackbar.make(view, items[which], Snackbar.LENGTH_SHORT).show();
             }
-        });*/
+        });
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String seleccion = "";
-                for (int i=0; i<checkedItem.length; i++){
-                    if (checkedItem[i])
-                        seleccion += " "+items[i];
-                }
-                dialog.cancel();
-                Snackbar.make(view, "Selección: "+seleccion, Snackbar.LENGTH_SHORT).show();
+
+
             }
         });
 

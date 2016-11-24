@@ -74,10 +74,11 @@ public class BaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         Bundle args = getArguments();
-        if (args != null)
+        if (args != null) {
             name = args.getString(ARG_NAME);
             position = args.getInt(ARG_DRAWABLE);
             idArreglo = args.getInt(ARG_ARREGLO);
+        }
     }
 
     @Override
@@ -118,10 +119,11 @@ public class BaseFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                /** Ejecuta la lista de los dialogos*/
                 Dialogo.listaCheck(getActivity(), v).show();
             }
         });
-
 
         ((TextView) view.findViewById(R.id.text_name)).setText(this.name);
     }
