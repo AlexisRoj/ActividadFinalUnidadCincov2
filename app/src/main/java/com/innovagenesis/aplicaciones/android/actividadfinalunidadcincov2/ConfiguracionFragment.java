@@ -12,10 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 /**
  * A simple {@link Fragment} subclass.
+ * Administra la pestaña de confirguracion
+ *
  */
 public class ConfiguracionFragment extends Fragment {
 
@@ -37,9 +40,9 @@ public class ConfiguracionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        /*** Agrega la imagen y el texto*/
-
+        /*** Agrega la imagen y el texto de configuracion*/
         ((ImageView)view.findViewById(R.id.image_storage)).setImageResource(R.drawable.ic_settings);
+        ((TextView)view.findViewById(R.id.textContent)).setText(R.string.action_settings);
 
         TypedArray arrayColorToolbar = getResources().obtainTypedArray(R.array.colorToolbar);
 
@@ -66,12 +69,11 @@ public class ConfiguracionFragment extends Fragment {
 
             /** Cambia el titulo y el subtitulo del Toolbar*/
             String title = getString(R.string.app_name);
-            String subTitle = getString(R.string.home);
+            String subTitle = getString(R.string.action_settings);
 
             MainActivity activity = (MainActivity) getActivity();
-
             activity.updateView(title,subTitle);
-            //activity.navigationView.setCheckedItem();
+
         }
     }
 }

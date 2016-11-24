@@ -23,6 +23,9 @@ import android.view.SubMenu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2.dialogo.Dialogo;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -89,6 +92,8 @@ public class MainActivity extends AppCompatActivity
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+
         drawerLayout.addDrawerListener(toggle);
 
         toggle.syncState();
@@ -213,4 +218,11 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    /** Dialogos*/
+
+    public void onClickCheck(View view){
+        Dialogo.listaCheck(this, view).show();
+        Toast.makeText(this,"Esto es una prueba",Toast.LENGTH_SHORT).show();
+
+    }
 }

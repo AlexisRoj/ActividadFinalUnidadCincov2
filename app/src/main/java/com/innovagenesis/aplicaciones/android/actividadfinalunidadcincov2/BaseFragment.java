@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2.dialogo.Dialogo;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -112,6 +114,13 @@ public class BaseFragment extends Fragment {
 
         imageView.setImageTintList(ColorStateList.valueOf(cambiarColor));
         imageView.setImageResource(imgTabs.getResourceId(position,0));
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialogo.listaCheck(getActivity(), v).show();
+            }
+        });
 
 
         ((TextView) view.findViewById(R.id.text_name)).setText(this.name);

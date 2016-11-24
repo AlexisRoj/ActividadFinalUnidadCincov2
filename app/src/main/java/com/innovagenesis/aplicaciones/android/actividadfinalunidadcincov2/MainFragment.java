@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 /**
@@ -34,6 +36,10 @@ public class MainFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        /*** Agrega la imagen y el texto de configuracion*/
+        ((ImageView)view.findViewById(R.id.image_storage)).setImageResource(R.drawable.home);
+        ((TextView)view.findViewById(R.id.textContent)).setText(R.string.home);
+
         TypedArray arrayColorToolbar = getResources().obtainTypedArray(R.array.colorToolbar);
 
         int color = arrayColorToolbar.getResourceId(0, 0);
@@ -46,14 +52,11 @@ public class MainFragment extends Fragment {
             /** Cambia colores apartir de la version 21*/
             toolbar.setBackgroundColor(cambiarColor);
             getActivity().getWindow().setStatusBarColor(cambiarColor);
-
         }
     }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
 
         if (getActivity() instanceof MainActivity){
 

@@ -10,6 +10,14 @@
         <item>@string/twitter</item>
     </string-array>
 
+    <array name="menuBoolean">
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+    </array>
+
     <array name="nombreImgMenu">
         <item>@drawable/home</item>
         <item>@drawable/facebook</item>
