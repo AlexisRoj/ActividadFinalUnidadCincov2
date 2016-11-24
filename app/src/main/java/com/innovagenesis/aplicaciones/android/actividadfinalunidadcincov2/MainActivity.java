@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,9 +20,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    View hView;
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -166,14 +170,27 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
 
+
         if (positionArray < 1)
             fragment = new MainFragment();
         else
             fragment = new TabsFragment();
 
+
+
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment)
                 .commit();
+
+        /**Cambia el color del Drawer*/
+        @SuppressLint("Recycle")
+        TypedArray arrayColorToolbar = getResources().obtainTypedArray(R.array.colorToolbar);
+        int color = arrayColorToolbar.getResourceId(positionArray + 0, 0);
+        int cambiarColor = ContextCompat.getColor(getBaseContext(), color);
+
+        hView = navigationView.getHeaderView(0);
+        LinearLayout head = (LinearLayout) hView.findViewById(R.id.header);
+        head.setBackgroundColor(cambiarColor);
 
         drawerLayout.closeDrawer(GravityCompat.START);
 

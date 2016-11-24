@@ -5,6 +5,7 @@
     android:background="#000"
     android:gravity="bottom"
     android:orientation="vertical"
+    android:id="@+id/header"
     android:paddingBottom="8dp"
     android:paddingLeft="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_vertical_margin"
