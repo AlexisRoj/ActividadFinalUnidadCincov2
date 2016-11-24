@@ -17,7 +17,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginBottom="5dp"
-        android:src="@drawable/home3"/>
+        android:src="@drawable/home5"/>
 
     <TextView
         android:id="@+id/text_name"

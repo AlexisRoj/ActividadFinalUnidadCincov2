@@ -18,8 +18,10 @@
         <item>@drawable/tweeter</item>
     </array>
 
+    <!-- Imagenes Drawer-->
+
     <array name="nombreImgMenu2">
-        <item>@drawable/home3</item>
+        <item>@drawable/home5</item>
         <item>@drawable/facebook3</item>
         <item>@drawable/instagram3</item>
         <item>@drawable/plus3</item>

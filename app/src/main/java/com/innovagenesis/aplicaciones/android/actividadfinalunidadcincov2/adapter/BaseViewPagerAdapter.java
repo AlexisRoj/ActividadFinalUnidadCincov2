@@ -15,17 +15,18 @@ import com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2.BaseFr
 public class BaseViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private String[] tabs;
-    private int id;
+    private int idArreglo;
 
-    public BaseViewPagerAdapter(FragmentManager fm, String[] tabs, int id) {
+    public BaseViewPagerAdapter(FragmentManager fm, String[] tabs, int idArreglo) {
         super(fm);
         this.tabs = tabs;
-        this.id = id;
+        this.idArreglo = idArreglo;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return BaseFragment.getInstance(tabs[position],position,id);
+        /** Se envia la posicion del ID, y el ID del arreglo en el que se encuentra*/
+        return BaseFragment.getInstance(tabs[position],position,idArreglo);
     }
 
     @Override

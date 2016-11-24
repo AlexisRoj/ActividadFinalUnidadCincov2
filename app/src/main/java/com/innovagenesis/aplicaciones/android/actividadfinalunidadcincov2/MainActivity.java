@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity
     NavigationView navigationView;
     FloatingActionButton fab;
 
+
     int positionArray;
     private String[] etiquetaSubMenu;
 
@@ -143,7 +144,12 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.compartir) {
             return true;
         }else if (id == R.id.settings) {
-            return true;
+
+            Fragment fragment = new ConfiguracionFragment();
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container,fragment)
+                    .commit();
         }
 
         return super.onOptionsItemSelected(item);
@@ -153,10 +159,9 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
-
         Fragment fragment;
 
-        switch (id) {
+                switch (id) {
             /** Selector de fragmentos del Drawer*/
             case R.id.nav_home:
                 positionArray = 0;
