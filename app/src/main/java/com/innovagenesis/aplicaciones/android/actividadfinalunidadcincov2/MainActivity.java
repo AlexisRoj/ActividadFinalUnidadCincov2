@@ -23,8 +23,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2.dialogo.DialogMenssaje;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, MenuItem.OnMenuItemClickListener {
 
     View hView;
 
@@ -131,7 +133,8 @@ public class MainActivity extends AppCompatActivity
 
             versionWeb.add(0, i + 1, i + 1, etiquetaSubMenu[i + 1])
                     .setIcon(imgSubMenu.getResourceId(i + 1, 0))
-                    .setIntent(intent);
+                    .setOnMenuItemClickListener(this);
+            //.setIntent(intent);
         }
 
         return true;
@@ -146,16 +149,21 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.compartir) {
+
+            /** Crea el mensaje a desplegar + la confirmacion**/
+            DialogMenssaje dialogMenssaje = new DialogMenssaje();
+            dialogMenssaje.newShareDialog(this).show();
+
             return true;
         } else if (id == R.id.settings) {
 
+            /** Instancia Configuracion*/
             Fragment fragment = new ConfiguracionFragment();
 
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, fragment)
                     .commit();
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -215,7 +223,13 @@ public class MainActivity extends AppCompatActivity
         fab.setBackgroundTintList(ColorStateList.valueOf(cambiarColor));
 
         drawerLayout.closeDrawer(GravityCompat.START);
-
         return true;
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+
+
+        return false;
     }
 }

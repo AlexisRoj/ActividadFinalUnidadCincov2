@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2.dialogo.Dialogo;
+import com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2.dialogo.DialogMenssaje;
 
 
 /**
@@ -115,8 +115,10 @@ public class BaseFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /** Ejecuta la lista de los dialogos*/
-                Dialogo.listaCheck(getActivity(), v).show();
+
+                /** Crea el mensaje a desplegar + la confirmacion**/
+                DialogMenssaje dialogMenssaje = new DialogMenssaje();
+                dialogMenssaje.newShareDialog(getActivity()).show();
             }
         });
 
