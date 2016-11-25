@@ -3,6 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">@color/colorToolBarHome</color>
+    <color name="colorBlanco">#000</color>
     
     
     <color name="colorToolBarHome1">#000</color>
