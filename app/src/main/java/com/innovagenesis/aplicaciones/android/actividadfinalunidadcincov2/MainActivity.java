@@ -33,7 +33,15 @@ public class MainActivity extends AppCompatActivity
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     FloatingActionButton fab;
+    private int idSubmenu;
 
+    public int getIdSubmenu() {
+        return idSubmenu;
+    }
+
+    public void setIdSubmenu(int idSubmenu) {
+        this.idSubmenu = idSubmenu;
+    }
 
     private int positionArray;
 
@@ -229,7 +237,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onMenuItemClick(MenuItem item) {
 
+        idSubmenu = item.getItemId();
 
-        return false;
+        Fragment fragment = new WebViewFragment();
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container,fragment)
+                .commit();
+
+        return true;
     }
 }
