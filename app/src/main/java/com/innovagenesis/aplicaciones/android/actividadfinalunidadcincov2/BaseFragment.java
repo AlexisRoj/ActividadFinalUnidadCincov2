@@ -18,7 +18,7 @@ import com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2.dialog
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * Fragment que desplega el contenido de los tabs
  */
 public class BaseFragment extends Fragment {
 
@@ -58,6 +58,7 @@ public class BaseFragment extends Fragment {
     public static Fragment getInstance(String name, int position, int idArreglo) {
         BaseFragment fragment = new BaseFragment();
 
+        /** Parametros que trae el fragment*/
         Bundle args = new Bundle();
         args.putString(ARG_NAME, name);
         args.putInt(ARG_DRAWABLE, position);

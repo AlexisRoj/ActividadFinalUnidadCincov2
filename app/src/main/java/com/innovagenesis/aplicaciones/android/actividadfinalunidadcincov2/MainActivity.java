@@ -39,10 +39,6 @@ public class MainActivity extends AppCompatActivity
         return idSubmenu;
     }
 
-    public void setIdSubmenu(int idSubmenu) {
-        this.idSubmenu = idSubmenu;
-    }
-
     private int positionArray;
 
     public int getPositionArray() {
@@ -128,8 +124,6 @@ public class MainActivity extends AppCompatActivity
         TypedArray imgSubMenu = getResources().obtainTypedArray(R.array.nombreImgMenu);
         String[] uriIntent = getResources().getStringArray(R.array.uriMenu);
 
-        Intent intent;
-
         SubMenu versionWeb = menu.addSubMenu(R.string.version_web);
 
 
@@ -137,7 +131,7 @@ public class MainActivity extends AppCompatActivity
             /** Agrega submenu, se envia uri a traves de un arreglo
              * Se le suma uno a i para reutilizar arreglo de etiquetas*/
 
-            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uriIntent[i + 1]));
+            new Intent(Intent.ACTION_VIEW, Uri.parse(uriIntent[i + 1]));
 
             versionWeb.add(0, i + 1, i + 1, etiquetaSubMenu[i + 1])
                     .setIcon(imgSubMenu.getResourceId(i + 1, 0))
@@ -237,8 +231,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onMenuItemClick(MenuItem item) {
 
+        /**Instancia la vista de navegacion*/
         idSubmenu = item.getItemId();
-
         Fragment fragment = new WebViewFragment();
 
         getSupportFragmentManager().beginTransaction()

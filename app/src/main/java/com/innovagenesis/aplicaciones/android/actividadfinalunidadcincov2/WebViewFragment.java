@@ -59,8 +59,9 @@ public class WebViewFragment extends Fragment {
         webView.setWebViewClient(new WebViewClient());
         activity.setTitle(url[id]);
         webView.loadUrl(url[id]);
-        webView.setWebChromeClient(new WebChromeClient() {
 
+        /** Carga el progressBar*/
+        webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int progress){
                 progressBar.setProgress(0);

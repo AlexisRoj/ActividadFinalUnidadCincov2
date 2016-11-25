@@ -23,11 +23,9 @@ import android.widget.TextView;
  */
 public class ConfiguracionFragment extends Fragment {
 
-
     public ConfiguracionFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,7 +37,6 @@ public class ConfiguracionFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
         /*** Agrega la imagen y el texto de configuracion*/
         ((ImageView)view.findViewById(R.id.image_storage)).setImageResource(R.drawable.ic_settings);
@@ -58,14 +55,12 @@ public class ConfiguracionFragment extends Fragment {
             /** Cambia colores apartir de la version 21*/
             toolbar.setBackgroundColor(cambiarColor);
             getActivity().getWindow().setStatusBarColor(cambiarColor);
-
         }
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
 
         if (getActivity() instanceof MainActivity){
 
@@ -75,7 +70,6 @@ public class ConfiguracionFragment extends Fragment {
 
             MainActivity activity = (MainActivity) getActivity();
             activity.updateView(title,subTitle);
-
         }
     }
 }

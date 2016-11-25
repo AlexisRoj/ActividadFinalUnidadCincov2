@@ -26,6 +26,7 @@ public class TabsFragment extends Fragment {
 
     private String[] tabs;
     private TypedArray imgTabs;
+    int cambiarColor;
     int id;
 
     @Nullable
@@ -74,7 +75,6 @@ public class TabsFragment extends Fragment {
         //tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE); // para cuando es mas de 3 tabs
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
 
-
         /**
          *
          * Administra los colores del drawer, toolbar y tabs
@@ -85,7 +85,7 @@ public class TabsFragment extends Fragment {
         TypedArray arrayColorToolbar = getResources().obtainTypedArray(R.array.colorToolbar);
 
         int color = arrayColorToolbar.getResourceId(id, 0);
-        int cambiarColor = ContextCompat.getColor(activity.getBaseContext(), color);
+        cambiarColor = ContextCompat.getColor(activity.getBaseContext(), color);
 
         Toolbar toolbar = (Toolbar)view.findViewById(R.id.toolbar);
 
@@ -95,18 +95,15 @@ public class TabsFragment extends Fragment {
             toolbar.setBackgroundColor(cambiarColor);
             tabLayout.setBackgroundColor(cambiarColor);
             activity.getWindow().setStatusBarColor(cambiarColor);
-
-
         }
 
         /** Incerta el icono en el tab */
         for (int i = 0; i < imgTabs.length(); i++) {
 
             TabLayout.Tab tab = tabLayout.getTabAt(i);
-
             if (tab != null){
                 tab.setIcon(imgTabs.getResourceId(i,0));
-                //tab.setText(null);
+                //tab.setText(null); //elimina el texto de los tabs
             }
         }
     }
@@ -143,12 +140,13 @@ public class TabsFragment extends Fragment {
 
         /** Actualiza el titulo y marca el item selecionado del drawer*/
         activity.updateView(title, subTitle);
+        //activity.navigationView.setBackgroundColor(cambiarColor); //cambia fondo
         activity.navigationView.setCheckedItem(check);
     }
 
     private class BookViewPagerAdapter extends BaseViewPagerAdapter {
 
-        public BookViewPagerAdapter(FragmentManager manager) {
+        private BookViewPagerAdapter(FragmentManager manager) {
             super(manager, tabs,id);
         }
 

@@ -8,15 +8,17 @@ import android.widget.Toast;
 import com.innovagenesis.aplicaciones.android.actividadfinalunidadcincov2.R;
 
 /**
- *
+ * Creada por Andres Simpe, modificada por Alexis Rojas
+ * Administra los mensajes del dialog
  * Created by Alexis on 24/11/2016.
  */
 
 public class DialogMenssaje {
 
-    public AlertDialog newShareDialog(final Activity activity){
-        final String[] items = {"Facebook", "Twitter", "Instagram", "Google Plus", "Whatsapp", "Messenger", "SMS"};
-        final boolean[] checkedItems = {false, false, false, false, false, false, false};
+    public AlertDialog newShareDialog(final Activity activity) {
+
+        final String[] items = activity.getResources().getStringArray(R.array.nombreDiaglog);
+        final boolean[] checkedItems = new boolean[items.length];
 
         AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.DialogStyle);
         builder.setTitle("Selecciona dónde quieres compartir esta aplicación:");
@@ -24,7 +26,6 @@ public class DialogMenssaje {
         builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-
             }
         });
 
@@ -48,11 +49,12 @@ public class DialogMenssaje {
                 dialog.cancel();
             }
         });
-
         return builder.create();
     }
 
-    public AlertDialog newConfirmationDialog(final String seleccion, final Activity activity){
+    private AlertDialog newConfirmationDialog(final String seleccion, final Activity activity) {
+
+        /** Realiza la confirmacion de accion*/
         AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.DialogStyle);
         builder.setTitle("Confirmación");
         builder.setMessage("¿Compartir esta aplicación a través de los medios seleccionados?");
@@ -60,7 +62,7 @@ public class DialogMenssaje {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
-                Toast.makeText(activity, seleccion, Toast.LENGTH_LONG).show();
+                Toast.makeText(activity, seleccion, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -70,7 +72,6 @@ public class DialogMenssaje {
                 dialog.cancel();
             }
         });
-
         return builder.create();
     }
 }

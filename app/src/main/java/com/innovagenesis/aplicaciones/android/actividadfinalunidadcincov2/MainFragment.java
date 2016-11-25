@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * Administra el home
  */
 public class MainFragment extends Fragment {
 
