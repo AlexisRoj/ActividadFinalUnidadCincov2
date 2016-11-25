@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,9 +101,6 @@ public class BaseFragment extends Fragment {
                 break;
         }
 
-        Log.v("Resultado",R.drawable.facebook3 + "  1");
-        Log.v("Resultado",imgTabs.getResourceId(position,0) + "  2");
-
         ImageView imageView = (ImageView) view.findViewById(R.id.imgArray);
 
         /** Cambia los colores de los items de las pestañas*/
@@ -119,7 +115,6 @@ public class BaseFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 /** Ejecuta la lista de los dialogos*/
                 Dialogo.listaCheck(getActivity(), v).show();
             }
